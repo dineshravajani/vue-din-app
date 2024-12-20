@@ -4,13 +4,15 @@ import Article from './components/Article.vue'
 import TodoItem from './components/TodoItem.vue';
 import GetAdvice from './components/GetAdvice.vue';
 import ContactUsForm from './components/ContactUsForm.vue';
+import ProductList from './components/ProductList.vue';
 export default {
 	components:{
 		Greet,
 		Article,
 		TodoItem,
 		GetAdvice,
-		ContactUsForm
+		ContactUsForm,
+		ProductList
 	},
   	data() {
     return {
@@ -139,6 +141,8 @@ export default {
 	<GetAdvice/>
 	<hr>
 	<ContactUsForm/>
+	<hr>
+	<ProductList/>
 </template>
 
 <style scoped>

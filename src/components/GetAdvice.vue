@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Get Advice API Example</h1>
-        <p v-if="adviceMsgCount > 0">You have displayed a total of {{ adviceMsgCount }} advices!!!</p>
+        <p v-if="adviceMsgCount > 0">You have displayed a total of {{ adviceMsgCount }} advice{{ adviceMsgCount > 1 ? 's' : '' }}!!!</p>
         <button @click="getAdvice" :disabled="loading">Get Advice</button>
         <p v-if="advice">{{ advice }}</p>
         <p v-if="loading">Loading...</p>
@@ -18,6 +18,9 @@
                 error:'',
                 adviceMsgCount:0,
             }
+        },
+        mounted() {
+            this.getAdvice(); // Fetch advice when the component is loaded
         },
         methods : {
             async getAdvice() {
