@@ -1,10 +1,16 @@
 <script>
 import Greet from './components/Greet.vue'
 import Article from './components/Article.vue'
+import TodoItem from './components/TodoItem.vue';
+import GetAdvice from './components/GetAdvice.vue';
+import ContactUsForm from './components/ContactUsForm.vue';
 export default {
 	components:{
 		Greet,
-		Article
+		Article,
+		TodoItem,
+		GetAdvice,
+		ContactUsForm
 	},
   	data() {
     return {
@@ -98,7 +104,8 @@ export default {
 		event.preventDefault();
 		console.log(this.formValues)
 
-	}
+	},
+	
   },
   computed : {
 	fullName() {
@@ -125,158 +132,13 @@ export default {
 </script>
 
 <template>
-	<Article title="Five Danger Roads" :likes="40" :is-published="false"/>
-	<Greet :name="firstName" :lastname="lastName"/>
 	
-	<h2>Current volume : {{ volume }}</h2>
-	<button @click="volume = volume+2">Increment</button>
-	<button @click="volume = volume-2">Decrement</button>
-	
-	<h2>Full Name {{ firstName }} {{ lastName }}</h2>
-	<h2>Computed Full Name {{fullName}}</h2>
-	<button @click="items.push({id:111,name:'pen',price:100})">Add Items</button>
-	<h2> Cart total : {{  cartTotal }}</h2>
-	<template v-for="item in items" :key="item.id">
-		<h2 v-if="item.price > 300">{{ item.name }} {{ item.price }}</h2>
-
-	</template>
-	<h2 v-for="item in expensiveItems" :key="item.id">{{ item.name }} {{  item.price }}</h2>
-	<pre>
-		{{ JSON.stringify(formValues, null, 2) }}
-	</pre>
-	<form @submit="submitForm">
-		<div>
-			<label for="yourname">Your Name</label>
-			<input type="text" id="yourname" v-model="formValues.yourname" />
-		</div>
-		<div>
-			<label for="country">Country</label>
-			<select v-model="formValues.country">
-				<option>Select Country</option>
-				<option value="india">India</option>
-				<option value="usa">United States</option>
-				<option value="uk">United Kingdon</option>
-			</select>
-		</div>
-		<div>
-			<label for="profile"> Profile Summary</label>
-			<textarea id="profile" v-model="formValues.profileSummary"/>
-		</div>
-		<div>
-			<label for="job-location">Job Location</label>
-			<select id="job-location" v-model="formValues.jobLocation" multiple>
-				<option>Select Country</option>
-				<option value="india">India</option>
-				<option value="uae">United Arab Emirated</option>
-				<option value="singapore">Singapore</option>
-			</select>
-		</div>
-		<div>
-			<input type="checkbox" id="remote-work" v-model="formValues.remoteWork" true-value="yes" false-value="no"/>
-			<label for="remote-work">Open to remote work ?</label>
-		</div>
-
-		<div>
-			<label>Skills</label>
-			<input type="checkbox" id="html" value="html" v-model="formValues.skillSet" />
-			<label for="html">HTML</label>
-
-			<input type="checkbox" id="css" value="css" v-model="formValues.skillSet" />
-			<label for="css">CSS</label>
-
-			<input type="checkbox" id="javascript" value="javascript" v-model="formValues.skillSet" />
-			<label for="javascript">Javascript</label>
-		</div>
-
-		<div>
-			<label>Years of Experience</label>
-			<input type="radio" id="0-2" value="0-2" v-model="formValues.yearsOfExp" />
-			<label for="0-2">0-2</label>
-
-			<input type="radio" id="3-5" value="3-5" v-model="formValues.yearsOfExp" />
-			<label for="3-5">3-5</label>
-
-			<input type="radio" id="5+" value="5+" v-model="formValues.yearsOfExp" />
-			<label for="5+">5+</label>
-
-		</div>
-		<div>
-			<button>Submit</button>
-		</div>
-	</form>
-	<h1>My Name is : {{ name  }}</h1>
-	<div>
-		<button v-on:click="name='Dinesh'">Change name</button>
-		<button v-on:click="changeName">Change name with method</button>
-		<button v-on:click="changeName( $event ), increment(10)">Multiple method on single click</button>
-	</div>
-	<h1>Counter value is : {{ count  }}</h1>
-	<div>
-		<button v-on:click="increment(1)">Increment by 1</button>
-		<button v-on:click="decrement(1)">Decrement by 1</button>
-
-		<button v-on:click="increment(5)">Increment by 5</button>
-		<button v-on:click="decrement(5)">Decrement by 5</button>
-		
-	</div>
-	<h1>{{ 2+3+5 }}</h1>
-	<h1>Add Method  : {{ add(1,2,3) }}</h1>
-	<h1>Multipy Method  : {{ multiply(10) }}</h1>
-	
-	<h1>Multipy with Base Value  : {{ multiply( baseValue ) }}</h1>
+    
+	<TodoItem/>
 	<hr>
-	<h1> Conditional Rendering</h1>
-	
-	<template v-for="(name,index) in names" :key="name">
-		<h2 v-if="name === 'Grapes'">{{ name }}</h2>
-	</template>
-	
+	<GetAdvice/>
 	<hr>
-	<h2 v-for="(name,index) in names" :key="name"> {{ index }} {{ name }}</h2>
-	<h2 v-for="name in fullNames"> {{ name.first }} {{ name.last }}</h2>
-	<div v-for="actor in actors">
-		<h1>{{ actor.name }}</h1>
-		<h3 v-for="movie in actor.movies">{{ movie }}</h3>
-	</div>
-	<h1 v-for="(value, key, index) in myInfo">{{key}} {{index}} {{ value  }}</h1>
-	<h1 v-if="num === 0">Number is zero</h1>
-	<h1 v-else-if="num < 0">Number is negative</h1>
-	<h1 v-else-if="num > 0">Number is postive</h1>
-	<h1 v-else>Not a number</h1>
-
-  <template v-if="display">
-      <h1>Din Turner</h1>
-      <h1>London</h1>
-      <h1>Wordpress Enthusiast</h1>
-  </template>
-    <h1 v-show="showElement">V show element</h1>
-	
-
-  <h3>{{ greet }} Name is {{ name  }}</h3>
-  <br>
-  <h3>{{ channel }}</h3>
-  <div v-html="channel"></div>
-  <h1 v-bind:id="headingId">Heading</h1>
-  <button v-bind:disabled="isDisabled">My Button</button>
-  <h2 class="underline">Underlined Text</h2>
-  <br>
-  <h2 class="underline" v-bind:class="status">Danger</h2>
-  <h1 v-bind:class="isPromoted && 'promoted'">Promoted Movie</h1>
-  <h1 v-bind:class="isSoldout ?  'sold-out' : 'new'">Movie is sold out</h1>
-  <h1 v-bind:class="['promoted','new']">Newly Promoted Movie</h1>
-  <h1 v-bind:class="[isPromoted && 'promoted', isSoldout ? 'sold-out' : 'new']">Array Conditional Movie</h1>
-  <h2 v-bind:class="{
-    promoted:isPromoted,
-    new: !isSoldout,
-    'sold-out': isSoldout
-  }">Object Conditional Movie</h2>
-  <h1 v-bind:style="{
-    color:highlightColor,
-    'font-size':headingSize + 'px'
-  }">Inline style</h1>
-  <h1 v-bind:style="headerStyleObject">Header Style Object</h1>
-  <h1 :style="headerStyleObject">V Bind shorthand operator</h1>
-  <!-- <p><button @click="count++">Count is: {{ count }}</button></p> -->
+	<ContactUsForm/>
 </template>
 
 <style scoped>
