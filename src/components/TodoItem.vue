@@ -3,9 +3,17 @@
     <div>
       <input v-model="newTask" placeholder="Add a new task" @keyup.enter="addTask" />
       <button @click="addTask">Add Task</button>
-      <p v-if="tasks.length > 0">You have total {{ tasks.length }} task{{  tasks.length > 1 ? 's' : '' }}</p>
+      <p v-if="filteredTasks.length > 0">You have total {{ filteredTasks.length }} task{{  filteredTasks.length > 1 ? 's' : '' }}</p>
+      <p>Filter :
+        <select v-model="taskFilter">
+          <option value="all">All</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+      </select>
+      </p>
+      
       <ul>
-        <li v-for="(task, index) in tasks" :key="index">
+        <li v-for="(task, index) in filteredTasks" :key="index">
           <span :class="{ completed: task.completed }">
             <template v-if="task.isEditing">
                 <input type="text" v-model="task.text" />
@@ -15,12 +23,12 @@
             </template>
           </span>
             <template v-if="task.isEditing">
-                <button @click="updateTask(index)">Update</button>
-                <button @click="toggleEdit(index)">Cancel</button>
+                <button @click="updateTask(task)">Update</button>
+                <button @click="toggleEdit(task)">Cancel</button>
             </template>
             <template v-else>
-                <button @click="toggleEdit(index)">Edit</button>
-                <button class="delete-btn" @click="deleteTask(index)">Delete</button>
+                <button @click="toggleEdit(task)">Edit</button>
+                <button :class="task.completed ? 'pending-btn' : 'delete-btn'"  @click="toggleTask(task)">{{ task.completed ? 'Move to Pending' : 'Mark as completed'}}</button>
             </template>
         </li>
       </ul>
@@ -33,9 +41,14 @@
       return {
         newTask: '',
         tasks: [],
+        taskFilter:'all'
       };
     },
     methods: {
+      getTaskIndex( index ){
+        const taskIndex = this.tasks.findIndex(task => task.text === this.filteredTasks[index].text);
+        return taskIndex;
+      },
       addTask() {
         if (this.newTask.trim()) {
           this.tasks.push({ text: this.newTask, completed: false,isEditing:false });
@@ -45,19 +58,29 @@
       deleteTask(index) {
         this.tasks.splice(index, 1);
       },
-      toggleTask(index) {
-        this.tasks[index].completed = !this.tasks[index].completed;
+      
+      toggleTask(task) {
+        task.completed = !task.completed;
       },
-      editTask(index) {
-        this.tasks[index].isEditing = !this.tasks[index].isEditing;
+      toggleEdit(task) {
+        task.isEditing = !task.isEditing;
       },
-      toggleEdit(index) {
-        this.tasks[index].isEditing = !this.tasks[index].isEditing;
-      },
-      updateTask(index) {
-        this.tasks[index].isEditing = !this.tasks[index].isEditing;
+      updateTask(task) {
+        task.isEditing = false;
       },
     },
+    computed : {
+      filteredTasks() {
+        if( this.taskFilter == 'all') {
+          return this.tasks;
+        } else if( this.taskFilter == 'pending') {
+          return this.tasks.filter( task => !task.completed )
+        } else if( this.taskFilter == 'completed') {
+          return this.tasks.filter( task => task.completed )
+        }
+        return this.tasks; // Default case
+      }
+    }
   };
   </script>
   
@@ -146,5 +169,8 @@ p {
 }
 button.delete-btn {
     background-color: #ff0000;
+}
+button.pending-btn {
+    background-color: #87A96B;
 }
 </style>
