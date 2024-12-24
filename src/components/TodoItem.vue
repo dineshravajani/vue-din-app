@@ -3,35 +3,46 @@
     <div>
       <input v-model="newTask" placeholder="Add a new task" @keyup.enter="addTask" />
       <button @click="addTask">Add Task</button>
-      <p v-if="filteredTasks.length > 0">You have total {{ filteredTasks.length }} task{{  filteredTasks.length > 1 ? 's' : '' }}</p>
+      <p v-if="taskCount > 0">You have total {{ taskCount }} task{{  taskCount > 1 ? 's' : '' }}</p>
       <p>Filter :
         <select v-model="taskFilter">
           <option value="all">All</option>
           <option value="pending">Pending</option>
           <option value="completed">Completed</option>
-      </select>
+      	</select>
+	  	Bulk Actions
+        <select v-model="bulkAction" @change="performBulkAction">
+			<option value="">Select option</option>
+			<option value="markCompleted">Mark as completed</option>
+		</select>
       </p>
       
-      <ul>
-        <li v-for="(task, index) in filteredTasks" :key="index">
-          <span :class="{ completed: task.completed }">
-            <template v-if="task.isEditing">
-                <input type="text" v-model="task.text" />
-            </template>
-            <template v-else>
-                {{ task.text }}
-            </template>
-          </span>
-            <template v-if="task.isEditing">
-                <button @click="updateTask(task)">Update</button>
-                <button @click="toggleEdit(task)">Cancel</button>
-            </template>
-            <template v-else>
-                <button @click="toggleEdit(task)">Edit</button>
-                <button :class="task.completed ? 'pending-btn' : 'delete-btn'"  @click="toggleTask(task)">{{ task.completed ? 'Move to Pending' : 'Mark as completed'}}</button>
-            </template>
-        </li>
-      </ul>
+      
+      <template v-if="taskCount > 0">
+		<p><input type="checkbox" id="selectAll" v-model="isSelectedAll" @change="toggleSelectAll"/><label for="selectAll">Select All</label></p>
+        <ul>
+          <li v-for="(task, index) in filteredTasks" :key="index">
+            <span :class="{ completed: task.completed }">
+              <template v-if="task.isEditing">
+                  <input type="text" v-model="task.text"/>
+              </template>
+              <template v-else>
+				<input type="checkbox" v-model="task.isSelected" @change="updateSelectAll"/>
+                  {{ task.text }}
+              </template>
+            </span>
+              <template v-if="task.isEditing">
+                  <button @click="updateTask(task)">Update</button>
+                  <button @click="toggleEdit(task, index)">Cancel</button>
+              </template>
+              <template v-else>
+                  <button @click="toggleEdit(task, index)">Edit</button>
+                  <button :class="task.completed ? 'pending-btn' : 'delete-btn'"  @click="toggleTask(task)">{{ task.completed ? 'Move to Pending' : 'Mark as completed'}}</button>
+              </template>
+          </li>
+        </ul>
+      </template>
+      <p v-if="taskCount == 0" class="no-task">No task found</p>
     </div>
   </template>
   
@@ -41,7 +52,9 @@
       return {
         newTask: '',
         tasks: [],
-        taskFilter:'all'
+        taskFilter:'all',
+		bulkAction:'',
+		isSelectedAll:false
       };
     },
     methods: {
@@ -51,7 +64,7 @@
       },
       addTask() {
         if (this.newTask.trim()) {
-          this.tasks.push({ text: this.newTask, completed: false,isEditing:false });
+          this.tasks.push({ text: this.newTask, completed: false,isEditing:false,isSelected:false });
           this.newTask = '';
         }
       },
@@ -62,12 +75,36 @@
       toggleTask(task) {
         task.completed = !task.completed;
       },
-      toggleEdit(task) {
+      toggleEdit(task, index) {
         task.isEditing = !task.isEditing;
+		
       },
       updateTask(task) {
         task.isEditing = false;
       },
+	  performBulkAction () {
+		if( this.bulkAction == 'markCompleted') {
+			this.filteredTasks.forEach( task => {
+				if( task.isSelected == true ) {
+					task.completed = true;
+				}
+			});
+			this.bulkAction = '';
+			this.filteredTasks.forEach( task => {
+				task.isSelected = false;
+			});
+			this.isSelectedAll = false;
+		}
+	  },
+	  toggleSelectAll () {
+		this.filteredTasks.forEach( task => {
+			task.isSelected = this.isSelectedAll;
+		});
+	  },
+	  updateSelectAll () {
+		// Recalculate `selectAll` based on individual task selections
+		this.isSelectedAll = this.filteredTasks.every( (task) => task.isSelected);
+	  }
     },
     computed : {
       filteredTasks() {
@@ -79,6 +116,9 @@
           return this.tasks.filter( task => task.completed )
         }
         return this.tasks; // Default case
+      },
+      taskCount () {
+        return this.filteredTasks.length;
       }
     }
   };
@@ -172,5 +212,11 @@ button.delete-btn {
 }
 button.pending-btn {
     background-color: #87A96B;
+}
+p.no-task {
+  color: #ff0000;
+}
+input[type="checkbox"] {
+	width: auto;
 }
 </style>

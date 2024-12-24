@@ -5,6 +5,8 @@ import TodoItem from './components/TodoItem.vue';
 import GetAdvice from './components/GetAdvice.vue';
 import ContactUsForm from './components/ContactUsForm.vue';
 import ProductList from './components/ProductList.vue';
+import Parent from './components/Parent.vue';
+import TogglePassword from './components/TogglePassword.vue';
 export default {
 	components:{
 		Greet,
@@ -12,7 +14,9 @@ export default {
 		TodoItem,
 		GetAdvice,
 		ContactUsForm,
-		ProductList
+		ProductList,
+		Parent,
+		TogglePassword
 	},
   	data() {
     return {
@@ -143,6 +147,8 @@ export default {
 	<ContactUsForm/>
 	<hr>
 	<ProductList/>
+	<hr>
+	<TogglePassword/>
 </template>
 
 <style scoped>
