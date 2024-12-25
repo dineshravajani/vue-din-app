@@ -7,6 +7,15 @@ import ContactUsForm from './components/ContactUsForm.vue';
 import ProductList from './components/ProductList.vue';
 import Parent from './components/Parent.vue';
 import TogglePassword from './components/TogglePassword.vue';
+import TipCalculator from './components/TipCalculator.vue';
+import ImageChanger from './components/ImageChanger.vue';
+import FlashCards from './components/FlashCards.vue';
+import Data from './components/Data.vue';
+import DemoOne from './components/DemoOne.vue';
+import DemoTwo from './components/DemoTwo.vue';
+import Methods from './components/Methods.vue';
+import VModel from './components/VModel.vue';
+import Computed from './components/Computed.vue';
 export default {
 	components:{
 		Greet,
@@ -16,7 +25,16 @@ export default {
 		ContactUsForm,
 		ProductList,
 		Parent,
-		TogglePassword
+		TogglePassword,
+		TipCalculator,
+		ImageChanger,
+		FlashCards,
+		Data,
+		DemoOne,
+		DemoTwo,
+		Methods,
+		VModel,
+		Computed
 	},
   	data() {
     return {
@@ -138,8 +156,18 @@ export default {
 </script>
 
 <template>
-	
-    
+	<!-- <Computed/> -->
+	<!-- <VModel/> -->
+	<!-- <Methods/> -->
+	<!-- <DemoTwo/> -->
+	<!-- <DemoOne/> -->
+	<!-- <Data/> -->
+	<FlashCards/>
+	<hr>
+	<ImageChanger/>
+	<hr>
+    <TipCalculator/>
+	<hr>
 	<TodoItem/>
 	<hr>
 	<GetAdvice/>

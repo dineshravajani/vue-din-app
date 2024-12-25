@@ -12,9 +12,10 @@
       	</select>
 	  	Bulk Actions
         <select v-model="bulkAction" @change="performBulkAction">
-			<option value="">Select option</option>
-			<option value="markCompleted">Mark as completed</option>
-		</select>
+			    <option value="">Select option</option>
+			    <option value="markCompleted">Mark as Completed</option>
+			    <option value="markPending">Mark as Pending</option>
+		    </select>
       </p>
       
       
@@ -89,12 +90,21 @@
 					task.completed = true;
 				}
 			});
-			this.bulkAction = '';
+			
+		} else if( this.bulkAction == 'markPending') {
 			this.filteredTasks.forEach( task => {
-				task.isSelected = false;
+				if( task.isSelected == true ) {
+					task.completed = false;
+				}
 			});
-			this.isSelectedAll = false;
+			
 		}
+
+        this.bulkAction = '';
+        this.tasks.forEach( task => {
+            task.isSelected = false;
+        });
+        this.isSelectedAll = false;
 	  },
 	  toggleSelectAll () {
 		this.filteredTasks.forEach( task => {
