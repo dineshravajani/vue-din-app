@@ -16,6 +16,9 @@ import DemoTwo from './components/DemoTwo.vue';
 import Methods from './components/Methods.vue';
 import VModel from './components/VModel.vue';
 import Computed from './components/Computed.vue';
+import Watch from './components/Watch.vue';
+import ProvideInject from './components/ProvideInject.vue';
+import TemplateRef from './components/TemplateRef.vue';
 export default {
 	components:{
 		Greet,
@@ -34,7 +37,10 @@ export default {
 		DemoTwo,
 		Methods,
 		VModel,
-		Computed
+		Computed,
+		Watch,
+		ProvideInject,
+		TemplateRef
 	},
   	data() {
     return {
@@ -156,6 +162,9 @@ export default {
 </script>
 
 <template>
+	<TemplateRef/>
+	<!-- <ProvideInject/> -->
+	<!-- <Watch/> -->
 	<!-- <Computed/> -->
 	<!-- <VModel/> -->
 	<!-- <Methods/> -->
