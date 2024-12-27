@@ -19,6 +19,9 @@ import Computed from './components/Computed.vue';
 import Watch from './components/Watch.vue';
 import ProvideInject from './components/ProvideInject.vue';
 import TemplateRef from './components/TemplateRef.vue';
+import Person from './components/Person.vue';
+import DateCounter from './components/DateCounter.vue';
+import Steps from './components/Steps.vue';
 export default {
 	components:{
 		Greet,
@@ -40,7 +43,10 @@ export default {
 		Computed,
 		Watch,
 		ProvideInject,
-		TemplateRef
+		TemplateRef,
+		Person,
+		DateCounter,
+		Steps
 	},
   	data() {
     return {
@@ -162,7 +168,12 @@ export default {
 </script>
 
 <template>
-	<TemplateRef/>
+	<Steps/>
+	<hr/>
+	<DateCounter/>
+	<hr/>
+	<!-- <Person/> -->
+	<!-- <TemplateRef/> -->
 	<!-- <ProvideInject/> -->
 	<!-- <Watch/> -->
 	<!-- <Computed/> -->
