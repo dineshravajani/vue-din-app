@@ -22,6 +22,7 @@ import TemplateRef from './components/TemplateRef.vue';
 import Person from './components/Person.vue';
 import DateCounter from './components/DateCounter.vue';
 import Steps from './components/Steps.vue';
+
 export default {
 	components:{
 		Greet,
@@ -46,7 +47,8 @@ export default {
 		TemplateRef,
 		Person,
 		DateCounter,
-		Steps
+		Steps,
+		
 	},
   	data() {
     return {
@@ -168,10 +170,13 @@ export default {
 </script>
 
 <template>
-	<Steps/>
-	<hr/>
-	<DateCounter/>
-	<hr/>
+	<app-header/>
+	<router-view />
+
+	<!-- <Steps/> -->
+	<!-- <hr/> -->
+	<!-- <DateCounter/> -->
+	<!-- <hr/> -->
 	<!-- <Person/> -->
 	<!-- <TemplateRef/> -->
 	<!-- <ProvideInject/> -->
@@ -182,7 +187,7 @@ export default {
 	<!-- <DemoTwo/> -->
 	<!-- <DemoOne/> -->
 	<!-- <Data/> -->
-	<FlashCards/>
+	<!-- <FlashCards/>
 	<hr>
 	<ImageChanger/>
 	<hr>
@@ -196,7 +201,7 @@ export default {
 	<hr>
 	<ProductList/>
 	<hr>
-	<TogglePassword/>
+	<TogglePassword/> -->
 </template>
 
 <style scoped>
