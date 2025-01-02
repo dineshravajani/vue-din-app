@@ -3,9 +3,9 @@
       <nav class="nav">
         <ul class="nav-list">
             <li><router-link to="/" class="nav-link">Home</router-link></li>
-            <li><router-link to="/articles" class="nav-link">About Us</router-link></li>
+            <li><router-link to="/articles" class="nav-link">Articles</router-link></li>
             <li><router-link to="/products" class="nav-link">Products</router-link></li>
-            <li><router-link to="/contactus" class="nav-link">Contact Us</router-link></li>
+            <li><router-link :to="{name:'contact'}" class="nav-link">Contact Us</router-link></li>
         </ul>
       </nav>
     </header>
