@@ -7,8 +7,8 @@
         <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
         <ul v-else class="article-grid">
             <ArticleCard v-for="post in postsData" :key="post.id" :article="post"/>
-            
         </ul>
+        <p v-if="searchQuery.length > 0 && postsData.length == 0 && !isLoading">No articles found</p>
         <div v-if="isLoading && currentPage > 1" class="loading">Loading...</div>
         <button v-if="!isLoading && hasMore" class="load-more" @click="loadMore">Load More</button>
     </div>

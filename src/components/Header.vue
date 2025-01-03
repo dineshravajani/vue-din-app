@@ -4,8 +4,24 @@
         <ul class="nav-list">
             <li><router-link to="/" class="nav-link">Home</router-link></li>
             <li><router-link to="/articles" class="nav-link">Articles</router-link></li>
-            <li><router-link to="/products" class="nav-link">Products</router-link></li>
             <li><router-link :to="{name:'contact'}" class="nav-link">Contact Us</router-link></li>
+			<li><router-link to="/piniademo" class="nav-link">Pinia Demo</router-link></li>
+			<li><router-link to="/piniaduplicate" class="nav-link">Pinia Duplicate</router-link></li>
+            <!-- New menu with submenu -->
+            <li class="nav-item dropdown">
+              <span class="nav-link">Demo
+				<span class="dropdown-icon">▼</span> <!-- Dropdown icon -->
+			  </span>
+              <ul class="dropdown-menu">
+                <li><router-link to="/tipcalculator" class="dropdown-link">Tip Calculator</router-link></li>
+                <li><router-link to="/todolist" class="dropdown-link">ToDo List</router-link></li>
+                <li><router-link to="/imagechanger" class="dropdown-link">Image Changer</router-link></li>
+                <li><router-link to="/products" class="dropdown-link">Products</router-link></li>
+                <li><router-link to="/getadvice" class="dropdown-link">Get Advice</router-link></li>
+                <li><router-link to="/togglepassword" class="dropdown-link">Toggle Password</router-link></li>
+                
+              </ul>
+            </li>
         </ul>
       </nav>
     </header>
@@ -54,5 +70,50 @@
     color: #f1c40f; /* Yellow */
     border-radius: 5px;
   }
+  .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+}
+
+.dropdown-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  background: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-link {
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  color: black;
+  white-space: nowrap;
+}
+
+.dropdown-link:hover {
+  background: #f0f0f0;
+}
   </style>
   
