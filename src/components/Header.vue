@@ -3,6 +3,8 @@
       <nav class="nav">
         <ul class="nav-list">
             <li><router-link to="/" class="nav-link">Home</router-link></li>
+            <li v-if="!authStore.isAuthenticated"><router-link to="/login" class="nav-link">Login</router-link></li>
+            <li v-if="authStore.isAuthenticated"><router-link to="/dashboard" class="nav-link">Dashboard</router-link></li>
             <li><router-link to="/articles" class="nav-link">Articles</router-link></li>
             <li><router-link :to="{name:'contact'}" class="nav-link">Contact Us</router-link></li>
 			<li><router-link to="/piniademo" class="nav-link">Pinia Demo</router-link></li>
@@ -28,8 +30,16 @@
   </template>
   
   <script>
+  import { useAuthStore } from '@/store/auth';
   export default {
     name: "Header",
+    setup() {
+      const authStore = useAuthStore();
+
+      return {
+        authStore
+      }
+    }
   };
   </script>
   
