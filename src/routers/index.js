@@ -14,7 +14,9 @@ import PiniaDemo from "@/components/PiniaDemo.vue";
 import PiniaDemoDuplicate from "@/components/PiniaDemoDuplicate.vue";
 import LoginForm from "@/components/LoginForm.vue";
 import Dashboard from "@/components/Dashboard.vue";
+import ProductListPinia from "@/components/ProductListPinia.vue";
 import { useAuthStore } from "@/store/auth";
+import CartPage from "@/components/CartPage.vue";
 const router = createRouter({
     history:createWebHistory(import.meta.env.BASE_URL),
     routes:[
@@ -36,12 +38,14 @@ const router = createRouter({
         {path:'/piniademo',component:PiniaDemo},
         {path:'/piniaduplicate',component:PiniaDemoDuplicate},
         {path:'/products',component:ProductList},
+        {path:'/cart',component:CartPage},
         {path:'/contactus',component:ContactUsForm,name:"contact"}, 
         {path:'/tipcalculator',component:TipCalculator},
         {path:'/todolist',component:TodoItem},
         {path:'/imagechanger',component:ImageChanger},
         {path:'/getadvice',component:GetAdvice},
         {path:'/togglepassword',component:TogglePassword},
+        {path:'/shop',component:ProductListPinia},
         {path:'/:noFound(.*)',component:PageNotFound}, 
     ]
 })

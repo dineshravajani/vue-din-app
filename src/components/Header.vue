@@ -5,6 +5,15 @@
             <li><router-link to="/" class="nav-link">Home</router-link></li>
             <li v-if="!authStore.isAuthenticated"><router-link to="/login" class="nav-link">Login</router-link></li>
             <li v-if="authStore.isAuthenticated"><router-link to="/dashboard" class="nav-link">Dashboard</router-link></li>
+            <li class="nav-item dropdown">
+              <span class="nav-link">Pinia Demos
+				<span class="dropdown-icon">▼</span> <!-- Dropdown icon -->
+			  </span>
+              <ul class="dropdown-menu">
+                <li><router-link to="/shop" class="dropdown-link">Products</router-link></li>
+                </ul>
+            </li>
+
             <li><router-link to="/articles" class="nav-link">Articles</router-link></li>
             <li><router-link :to="{name:'contact'}" class="nav-link">Contact Us</router-link></li>
 			<li><router-link to="/piniademo" class="nav-link">Pinia Demo</router-link></li>
