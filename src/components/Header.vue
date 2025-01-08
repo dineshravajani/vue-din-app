@@ -14,6 +14,18 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown">
+              <span class="nav-link">Firebase Demos
+				<span class="dropdown-icon">▼</span> <!-- Dropdown icon -->
+			  </span>
+              <ul class="dropdown-menu">
+                <li><router-link to="/firebase/list-articles" class="dropdown-link">List Articles</router-link></li>
+                <li><router-link to="/firebase/add-article" class="dropdown-link">Add Article</router-link></li>
+                <li><router-link to="/firebase/user/register" class="dropdown-link">Register</router-link></li>
+                <li><router-link to="/firebase/user/login" class="dropdown-link">Login</router-link></li>
+                </ul>
+            </li>
+
             <li><router-link to="/articles" class="nav-link">Articles</router-link></li>
             <li><router-link :to="{name:'contact'}" class="nav-link">Contact Us</router-link></li>
 			<li><router-link to="/piniademo" class="nav-link">Pinia Demo</router-link></li>

@@ -17,6 +17,11 @@ import Dashboard from "@/components/Dashboard.vue";
 import ProductListPinia from "@/components/ProductListPinia.vue";
 import { useAuthStore } from "@/store/auth";
 import CartPage from "@/components/CartPage.vue";
+import FirebaseListArticles from "@/components/FirebaseListArticles.vue";
+import FirebaseAddArticle from "@/components/FirebaseAddArticle.vue";
+import FirebaseUpdateArticle from "@/components/FirebaseUpdateArticle.vue";
+import FirebaseUserRegister from "@/components/FirebaseUserRegister.vue";
+
 const router = createRouter({
     history:createWebHistory(import.meta.env.BASE_URL),
     routes:[
@@ -47,6 +52,13 @@ const router = createRouter({
         {path:'/togglepassword',component:TogglePassword},
         {path:'/shop',component:ProductListPinia},
         {path:'/:noFound(.*)',component:PageNotFound}, 
+
+
+        {path:'/firebase/list-articles',component:FirebaseListArticles},
+        {path:'/firebase/add-article',component:FirebaseAddArticle},
+        {path:'/firebase/update-article/:id',component:FirebaseUpdateArticle,props:true},
+        {path:'/firebase/user/register',component:FirebaseUserRegister},
+        {path:'/firebase/user/login',component:FirebaseUserRegister},
     ]
 })
 
