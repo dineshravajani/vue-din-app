@@ -42,6 +42,7 @@
                 <li><router-link to="/products" class="dropdown-link">Products</router-link></li>
                 <li><router-link to="/getadvice" class="dropdown-link">Get Advice</router-link></li>
                 <li><router-link to="/togglepassword" class="dropdown-link">Toggle Password</router-link></li>
+                <li><router-link to="/colorform" class="dropdown-link">Color Form</router-link></li>
                 
               </ul>
             </li>

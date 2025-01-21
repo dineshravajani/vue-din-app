@@ -21,6 +21,7 @@ import FirebaseListArticles from "@/components/FirebaseListArticles.vue";
 import FirebaseAddArticle from "@/components/FirebaseAddArticle.vue";
 import FirebaseUpdateArticle from "@/components/FirebaseUpdateArticle.vue";
 import FirebaseUserRegister from "@/components/FirebaseUserRegister.vue";
+import ColorForm from "@/components/ColorForm.vue";
 
 const router = createRouter({
     history:createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,7 @@ const router = createRouter({
         {path:'/imagechanger',component:ImageChanger},
         {path:'/getadvice',component:GetAdvice},
         {path:'/togglepassword',component:TogglePassword},
+        {path:'/colorform',component:ColorForm},
         {path:'/shop',component:ProductListPinia},
         {path:'/:noFound(.*)',component:PageNotFound}, 
 

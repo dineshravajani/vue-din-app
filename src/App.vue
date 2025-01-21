@@ -22,6 +22,7 @@ import TemplateRef from './components/TemplateRef.vue';
 import Person from './components/Person.vue';
 import DateCounter from './components/DateCounter.vue';
 import Steps from './components/Steps.vue';
+import ColorForm from './components/ColorForm.vue';
 
 export default {
 	components:{
@@ -172,6 +173,7 @@ export default {
 <template>
 	<app-header/>
 	<router-view />
+	<ColorForm/>
 
 	<!-- <Steps/> -->
 	<!-- <hr/> -->
